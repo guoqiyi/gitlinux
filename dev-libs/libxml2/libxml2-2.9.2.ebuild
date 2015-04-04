@@ -153,9 +153,7 @@ multilib_src_install() {
 		python_foreach_impl libxml2_py_emake DESTDIR="${D}" install
 		python_foreach_impl python_optimize
 	fi
-	if ! use gtk-doc ; then
-		rm -rf "${ED}"/usr/share/gtk-doc || die
-	fi
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 }
 
 multilib_src_install_all() {
@@ -171,9 +169,7 @@ multilib_src_install_all() {
 	rm -rf "${ED}"/usr/share/doc/${P}
 	einstalldocs
 
-	if ! use usr-doc ; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 
 	if ! use python; then
 		rm -rf "${ED}"/usr/share/doc/${PF}/python

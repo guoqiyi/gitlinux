@@ -194,7 +194,7 @@ multilib_src_install() {
 		done
 	fi
 
-	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 }
 
 multilib_src_install_all() {
@@ -203,7 +203,7 @@ multilib_src_install_all() {
 
 	dodoc AUTHORS ChangeLog* HACKING NEWS* README*
 
-	use usr-doc || rm -rf "${ED}"/usr/share/doc
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 }
 
 pkg_preinst() {

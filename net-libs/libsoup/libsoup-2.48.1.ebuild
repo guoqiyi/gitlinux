@@ -91,10 +91,10 @@ multilib_src_configure() {
 
 multilib_src_install() {
 	gnome2_src_install
-	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 }
 
 multilib_src_install_all() {
 	dodoc AUTHORS NEWS README
-	use usr-doc || rm -rf "${ED}"/usr/share/doc
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 }

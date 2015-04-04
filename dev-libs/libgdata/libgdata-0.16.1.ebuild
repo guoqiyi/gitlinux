@@ -72,11 +72,7 @@ src_install() {
 	default
 	use static-libs || rm -f "${ED}/usr/$(get_libdir)/${PN}.la"
 
-	if ! use usr-doc ; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 
-	if ! use gtk-doc ; then
-		rm -rf "${ED}"/usr/share/gtk-doc || die
-	fi
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 }

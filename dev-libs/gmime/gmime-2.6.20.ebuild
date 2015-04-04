@@ -67,6 +67,6 @@ src_install() {
 		docinto tutorial
 		dodoc docs/tutorial/html/*
 	fi
-	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc
-	use usr-doc || rm -rf "${ED}"/usr/share/doc
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 }

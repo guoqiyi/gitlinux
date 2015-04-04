@@ -79,18 +79,14 @@ multilib_src_install() {
 	# Needed for orc-using gst plugins on hardened/PaX systems, bug #421579
 	use orc && pax-mark -m "${ED}usr/$(get_libdir)/gstreamer-${SLOT}/gst-plugin-scanner"
 
-	if ! use gtk-doc ; then
-		rm -rf "${ED}"/usr/share/gtk-doc || die
-	fi
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 }
 
 multilib_src_install_all() {
 	DOCS="AUTHORS ChangeLog NEWS MAINTAINERS README RELEASE"
 	einstalldocs
 	prune_libtool_files --modules
-	if ! use usr-doc ; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 	# Needed for orc-using gst plugins on hardened/PaX systems, bug #421579
 	use orc && pax-mark -m "${ED}usr/bin/gst-launch-${SLOT}"
 }

@@ -200,14 +200,10 @@ src_test() {
 src_install() {
 	# Install completions at proper place, bug #465100
 	gnome2_src_install completiondir="$(get_bashcompdir)"
-	if ! use gtk-doc ; then
-		rm -rf "${ED}"/usr/share/gtk-doc || die
-	fi
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 
 	readme.gentoo_create_doc
-	if ! use usr-doc ; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 
 	newinitd "${FILESDIR}/init.d.NetworkManager" NetworkManager
 	newconfd "${FILESDIR}/conf.d.NetworkManager" NetworkManager

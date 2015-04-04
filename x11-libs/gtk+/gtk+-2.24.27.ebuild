@@ -201,9 +201,7 @@ multilib_src_install() {
 		done
 	fi
 
-	if ! use gtk-doc ; then
-		rm -rf "${ED}"/usr/share/gtk-doc || die
-	fi
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 }
 
 multilib_src_install_all() {
@@ -214,9 +212,7 @@ multilib_src_install_all() {
 
 	dodoc AUTHORS ChangeLog* HACKING NEWS* README*
 
-	if ! use usr-doc ; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 
 	# dev-util/gtk-builder-convert split off into a separate package, #402905
 	rm "${ED}"usr/bin/gtk-builder-convert || die

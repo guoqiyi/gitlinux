@@ -26,7 +26,7 @@ SRC_URI="${SRC_URI}
 
 LICENSE="LGPL-2+"
 SLOT="2"
-IUSE="doc dbus fam gtk-doc kernel_linux +mime selinux static-libs systemtap test utils xattr"
+IUSE="usr-doc dbus fam gtk-doc kernel_linux +mime selinux static-libs systemtap test utils xattr"
 REQUIRED_USE="
 	utils? ( ${PYTHON_REQUIRED_USE} )
 	test? ( ${PYTHON_REQUIRED_USE} )
@@ -239,10 +239,7 @@ multilib_src_test() {
 multilib_src_install() {
 	gnome2_src_install
 
-	if ! use gtk-doc; then
-		rm -rf "${ED}"/usr/share/gtk-doc || die
-	fi
-
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 }
 
 multilib_src_install_all() {
@@ -256,9 +253,7 @@ multilib_src_install_all() {
 		rm "${ED}usr/share/man/man1/gtester-report.1"
 	fi
 
-	if ! use doc; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 
 	# Do not install charset.alias even if generated, leave it to libiconv
 	rm -f "${ED}/usr/lib/charset.alias"

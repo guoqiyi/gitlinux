@@ -137,9 +137,7 @@ src_install() {
 
 	prune_libtool_files --all
 
-	if ! use gtk-doc ; then
-		rm -rf "${ED}"/usr/share/gtk-doc || die
-	fi
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 
 	mv "${ED}"/usr/share/bash-completion/completions/ibus.bash "${T}"
 	rm -rf "${ED}"/usr/share/bash-completion || die
@@ -154,9 +152,7 @@ src_install() {
 
 	readme.gentoo_create_doc
 
-	if ! use usr-doc ; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 }
 
 pkg_preinst() {

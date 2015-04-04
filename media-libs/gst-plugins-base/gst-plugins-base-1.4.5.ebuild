@@ -91,16 +91,12 @@ multilib_src_install() {
 	# can't do "default", we want to install docs in multilib_src_install_all
 	emake DESTDIR="${D}" install
 
-	if ! use gtk-doc ; then
-		rm -rf "${ED}"/usr/share/gtk-doc || die
-	fi
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 }
 
 multilib_src_install_all() {
 	DOCS="AUTHORS NEWS README RELEASE"
 	einstalldocs
 	prune_libtool_files --modules
-	if ! use usr-doc ; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 }

@@ -60,7 +60,7 @@ src_configure() {
 }
 src_install() {
 	emake DESTDIR="${D}" install
-	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc
-	use usr-doc || rm -rf "${ED}"/usr/share/doc
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 	use static-libs || rm -rf "${ED}"/usr/lib64/libmx-{,gtk-}1.0.la
 }

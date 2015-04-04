@@ -159,8 +159,8 @@ multilib_src_configure() {
 multilib_src_install_all() {
 	prune_libtool_files --all
 	einstalldocs
-	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc
-	use usr-doc || rm -rf "${ED}"/usr/share/doc
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 }
 
 pkg_postinst() {

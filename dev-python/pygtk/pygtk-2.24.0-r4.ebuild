@@ -92,9 +92,7 @@ src_test() {
 src_install() {
 	dodoc AUTHORS ChangeLog INSTALL MAPPING NEWS README THREADS TODO
 
-	if ! use usr-doc ; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 
 
 	if use examples; then
@@ -106,7 +104,5 @@ src_install() {
 	python_foreach_impl run_in_build_dir gnome2_src_install
 	prune_libtool_files --modules
 
-	if ! use gtk-doc ; then
-		rm -rf "${ED}"/usr/share/gtk-doc || die
-	fi
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 }

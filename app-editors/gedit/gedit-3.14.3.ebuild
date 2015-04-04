@@ -104,13 +104,9 @@ src_install() {
 
 	gnome2_src_install "${args[@]}"
 
-	if ! use gtk-doc ; then
-		rm -rf "${ED}"/usr/share/gtk-doc || die
-	fi
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 
 	dodoc AUTHORS BUGS ChangeLog MAINTAINERS NEWS README
 
-	if ! use usr-doc ; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 }

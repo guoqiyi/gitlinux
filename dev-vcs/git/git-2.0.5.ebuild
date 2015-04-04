@@ -512,9 +512,7 @@ src_install() {
 		systemd_dounit "${FILESDIR}/git-daemon.socket"
 	fi
 
-	if ! use usr-doc ;then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 
 	perl_delete_localpod
 }

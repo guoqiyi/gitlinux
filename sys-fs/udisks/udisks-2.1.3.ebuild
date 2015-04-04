@@ -90,8 +90,8 @@ src_install() {
 	if [[ -d ${ED}/usr/share/doc/${PF}/html/${htmldir} ]]; then
 		dosym /usr/share/doc/${PF}/html/${htmldir} /usr/share/gtk-doc/html/${htmldir}
 	fi
-	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc
-	use usr-doc || rm -rf "${ED}"/usr/share/doc
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 }
 
 pkg_postinst() {

@@ -64,15 +64,12 @@ multilib_src_configure() {
 multilib_src_install() {
 	gnome2_src_install
 	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
-	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 }
 
 multilib_src_install_all() {
 	dodoc AUTHORS ChangeLog NEWS README THANKS
 
-	if ! use usr-doc ; then
-		rm -rf "${ED}"/usr/share/doc || die
-	fi
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 }
 
 pkg_postinst() {
