@@ -12,7 +12,7 @@ SRC_URI="mirror://github/clutter-project/${PN}/${P}.tar.xz"
 LICENSE="LGPL-2.1"
 SLOT="1.0"
 KEYWORDS="~alpha amd64 ~arm ~ia64 ~ppc ~ppc64 ~sparc x86"
-IUSE="dbus debug glade +gtk gtk-doc +introspection startup-notification static-libs usr-doc"
+IUSE="dbus debug glade +gtk gtk-doc +introspection startup-notification usr-doc"
 
 RDEPEND="
 	>=dev-libs/glib-2.28.0:2
@@ -59,8 +59,7 @@ src_configure() {
 		$(use_with startup-notification)
 }
 src_install() {
-	emake DESTDIR="${D}" install
+	gnome2_src_install
 	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
-	use static-libs || rm -rf "${ED}"/usr/lib64/libmx-{,gtk-}1.0.la
 }

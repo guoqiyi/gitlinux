@@ -13,7 +13,7 @@ DESCRIPTION="Clutter is a library for creating graphical user interfaces"
 
 LICENSE="LGPL-2.1+ FDL-1.1+"
 SLOT="1.0"
-IUSE="aqua debug doc egl gtk gtk-doc +introspection static-libs test usr-doc wayland +X"
+IUSE="aqua debug doc egl gtk gtk-doc +introspection test usr-doc wayland +X"
 REQUIRED_USE="
 	|| ( aqua wayland X )
 	wayland? ( egl )
@@ -112,8 +112,7 @@ src_test() {
 }
 
 src_install() {
-	default
-	use static-libs || rm -f "${ED}/usr/$(get_libdir)/libclutter-1.0.la"
+	gnome2_src_install
 
 	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 

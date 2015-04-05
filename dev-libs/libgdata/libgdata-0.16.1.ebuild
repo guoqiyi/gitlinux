@@ -69,8 +69,7 @@ src_test() {
 }
 
 src_install() {
-	default
-	use static-libs || rm -f "${ED}/usr/$(get_libdir)/${PN}.la"
+	gnome2_src_install
 
 	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 

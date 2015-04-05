@@ -18,7 +18,7 @@ LICENSE="LGPL-2.1+"
 SLOT="0"
 KEYWORDS="alpha amd64 arm ia64 ppc ppc64 sparc x86 ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux"
 
-IUSE="debug usr-doc gtk-doc +introspection static-libs +vala"
+IUSE="debug gtk-doc +introspection usr-doc +vala"
 REQUIRED_USE="
 	${PYTHON_REQUIRED_USE}
 	vala? ( introspection )
@@ -64,8 +64,7 @@ src_test() {
 }
 
 src_install() {
-	default
-	use static-libs || rm -f "${ED}/usr/$(get_libdir)/libtelepathy-glib.la"
+	gnome2_src_install
 
 	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
 
