@@ -1,6 +1,6 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-power/upower/upower-0.99.1.ebuild,v 1.4 2015/01/16 08:56:13 armin76 Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-power/upower/upower-0.99.2-r1.ebuild,v 1.7 2015/04/21 21:32:20 leio Exp $
 
 EAPI=5
 inherit eutils systemd
@@ -11,11 +11,11 @@ SRC_URI="http://${PN}.freedesktop.org/releases/${P}.tar.xz"
 
 LICENSE="GPL-2"
 SLOT="0/3" # based on SONAME of libupower-glib.so
-KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 sparc x86 ~x86-fbsd"
-IUSE="gtk-doc +introspection ios kernel_FreeBSD kernel_linux usr-doc"
+KEYWORDS="~alpha amd64 arm ~ia64 ~mips ppc ppc64 ~sparc x86 ~x86-fbsd"
+IUSE="gtk-doc +introspection ios kernel_FreeBSD kernel_linux selinux usr-doc"
 
-RDEPEND=">=dev-libs/dbus-glib-0.100
-	>=dev-libs/glib-2.30
+COMMON_DEPS=">=dev-libs/dbus-glib-0.100
+	>=dev-libs/glib-2.34
 	sys-apps/dbus:=
 	introspection? ( dev-libs/gobject-introspection )
 	kernel_linux? (
@@ -27,7 +27,11 @@ RDEPEND=">=dev-libs/dbus-glib-0.100
 			>=app-pda/libplist-1:=
 			)
 		)"
-DEPEND="${RDEPEND}
+RDEPEND="
+	${COMMON_DEPS}
+	selinux? ( sec-policy/selinux-devicekit )
+"
+DEPEND="${COMMON_DEPS}
 	dev-libs/libxslt
 	app-text/docbook-xsl-stylesheets
 	dev-util/intltool

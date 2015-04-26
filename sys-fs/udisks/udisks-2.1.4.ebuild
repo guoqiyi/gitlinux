@@ -1,6 +1,6 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-fs/udisks/udisks-2.1.3.ebuild,v 1.12 2014/12/06 20:19:20 zlogene Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-fs/udisks/udisks-2.1.4.ebuild,v 1.7 2015/04/21 18:42:07 pacho Exp $
 
 EAPI=5
 inherit bash-completion-r1 eutils linux-info systemd udev
@@ -11,8 +11,8 @@ SRC_URI="http://udisks.freedesktop.org/releases/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="2"
-KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 ~sh sparc x86"
-IUSE="debug cryptsetup gtk-doc +gptfdisk +introspection selinux systemd usr-doc"
+KEYWORDS="alpha amd64 ~arm ia64 ~mips ppc ~ppc64 ~sh sparc x86"
+IUSE="debug cryptsetup +gptfdisk gtk-doc +introspection selinux systemd usr-doc"
 
 COMMON_DEPEND=">=dev-libs/glib-2.32
 	>=dev-libs/libatasmart-0.19
@@ -60,7 +60,6 @@ pkg_setup() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}"/${PN}-2.1.0-W_define.patch
 	use systemd || { sed -i -e 's:libsystemd-login:&disable:' configure || die; }
 
 	epatch_user

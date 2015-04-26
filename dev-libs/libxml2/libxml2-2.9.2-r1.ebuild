@@ -1,9 +1,9 @@
 # Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.9.2.ebuild,v 1.12 2015/03/07 02:50:26 tetromino Exp $
+# $Header: /var/cvsroot/gentoo-x86/dev-libs/libxml2/libxml2-2.9.2-r1.ebuild,v 1.6 2015/04/24 21:48:36 zlogene Exp $
 
 EAPI="5"
-PYTHON_COMPAT=( python{2_6,2_7,3_2,3_3,3_4} )
+PYTHON_COMPAT=( python{2_7,3_3,3_4} )
 PYTHON_REQ_USE="xml"
 
 inherit libtool flag-o-matic eutils python-r1 autotools prefix multilib-minimal
@@ -13,7 +13,7 @@ HOMEPAGE="http://www.xmlsoft.org/"
 
 LICENSE="MIT"
 SLOT="2"
-KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh sparc x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
+KEYWORDS="~alpha amd64 ~arm ~arm64 hppa ~ia64 ~m68k ~mips ~ppc ppc64 ~s390 ~sh sparc x86 ~ppc-aix ~amd64-fbsd ~sparc-fbsd ~x86-fbsd ~x64-freebsd ~x86-freebsd ~hppa-hpux ~ia64-hpux ~x86-interix ~amd64-linux ~arm-linux ~ia64-linux ~x86-linux ~ppc-macos ~x64-macos ~x86-macos ~m68k-mint ~sparc-solaris ~sparc64-solaris ~x64-solaris ~x86-solaris ~x86-winnt"
 IUSE="debug examples gtk-doc icu ipv6 lzma python readline static-libs test usr-doc"
 
 XSTS_HOME="http://www.w3.org/XML/2004/xml-schema-test-suite"
@@ -80,7 +80,11 @@ src_prepare() {
 
 	# Important patches from master
 	epatch \
-		"${FILESDIR}/${PN}-2.9.2-revert-missing-initialization.patch"
+		"${FILESDIR}/${PN}-2.9.2-revert-missing-initialization.patch" \
+		"${FILESDIR}/${PN}-2.9.2-missing-entities.patch" \
+		"${FILESDIR}/${PN}-2.9.2-threads-declarations.patch" \
+		"${FILESDIR}/${PN}-2.9.2-timsort.patch" \
+		"${FILESDIR}/${PN}-2.9.2-constant-memory.patch"
 
 	# Please do not remove, as else we get references to PORTAGE_TMPDIR
 	# in /usr/lib/python?.?/site-packages/libxml2mod.la among things.

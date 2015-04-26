@@ -16,7 +16,7 @@ HOMEPAGE="https://wiki.gnome.org/Projects/GnomeKeyring"
 
 LICENSE="LGPL-2+ GPL-2+" # tests are GPL-2
 SLOT="0"
-IUSE="debug +introspection test vala"
+IUSE="debug gtk-doc +introspection test usr-doc vala"
 REQUIRED_USE="vala? ( introspection )"
 KEYWORDS="alpha amd64 arm ia64 ~mips ppc ppc64 ~sh sparc x86 ~amd64-fbsd ~x86-fbsd ~amd64-linux ~arm-linux ~x86-linux ~sparc-solaris"
 
@@ -53,4 +53,12 @@ src_configure() {
 src_test() {
 	unset DBUS_SESSION_BUS_ADDRESS
 	dbus-launch emake check || die "tests failed"
+}
+
+src_install() {
+	gnome2_src_install
+
+	use usr-doc || rm -rf "${ED}"/usr/share/doc || die
+
+	use gtk-doc || rm -rf "${ED}"/usr/share/gtk-doc || die
 }
